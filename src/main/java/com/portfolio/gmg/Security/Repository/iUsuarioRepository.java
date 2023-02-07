@@ -1,0 +1,20 @@
+
+package com.portfolio.gmg.Security.Repository;
+
+import com.portfolio.gmg.Security.Entity.Usuario;
+import java.util.Optional;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+/**
+ *
+ * @author Gonzalo Martín
+ */
+@Repository
+public interface iUsuarioRepository extends JpaRepository<Usuario, Integer>{
+    Optional<Usuario> findByNombreUsuario(String nombreUsuario);
+    
+    public boolean existsByNombreUsuario(String nombreUsuario);
+
+    public boolean existsByEmail(String email);
+}
