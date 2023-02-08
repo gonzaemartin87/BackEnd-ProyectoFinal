@@ -1,4 +1,3 @@
-
 package com.portfolio.gmg.Security.Service;
 
 import com.portfolio.gmg.Security.Entity.Usuario;
@@ -14,7 +13,7 @@ import org.springframework.stereotype.Service;
  * @author Gonzalo Martín
  */
 @Service
-public class UserDetailsImp implements UserDetailsService{
+public class UserDetailsImpl implements UserDetailsService{
     @Autowired
     UsuarioService usuarioService;
 
