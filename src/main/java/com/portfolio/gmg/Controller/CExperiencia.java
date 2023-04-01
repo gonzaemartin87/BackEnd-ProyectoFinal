@@ -3,7 +3,7 @@ package com.portfolio.gmg.Controller;
 
 import com.portfolio.gmg.Entity.Experiencia;
 import com.portfolio.gmg.Security.Controller.Mensaje;
-import com.portfolio.gmg.Security.Dto.dtoExperiencia;
+import com.portfolio.gmg.Dto.dtoExperiencia;
 import com.portfolio.gmg.Service.ExperienciaS;
 import java.util.List;
 import org.apache.commons.lang3.StringUtils;

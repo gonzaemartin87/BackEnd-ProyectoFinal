@@ -1,4 +1,3 @@
-
 package com.portfolio.gmg.Controller;
 
 import com.portfolio.gmg.Dto.dtoPersona;
@@ -6,9 +5,11 @@ import com.portfolio.gmg.Entity.Persona;
 import com.portfolio.gmg.Security.Controller.Mensaje;
 import com.portfolio.gmg.Service.ImpPersonaService;
 import java.util.List;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -45,8 +46,8 @@ public class PersonaController {
         Persona persona = personaService.getOne(id).get();
         return new ResponseEntity(persona, HttpStatus.OK);
     }
-    
-    @DeleteMapping("/delete/{id}")
+   @PreAuthorize("hasRole('ADMIN')")
+   @DeleteMapping("/delete/{id}")
     public ResponseEntity<?> delete(@PathVariable("id") int id) {
         if (!personaService.existsById(id)) {
             return new ResponseEntity(new Mensaje("No existe el ID"), HttpStatus.NOT_FOUND);
@@ -54,40 +55,41 @@ public class PersonaController {
         personaService.delete(id);
         return new ResponseEntity(new Mensaje("Item eliminado"), HttpStatus.OK);
     }
-
+    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping("/create")
-    public ResponseEntity<?> create(@RequestBody dtoPersona dtoeducacion) {
-        if (StringUtils.isBlank(dtoeducacion.getNombre())) {
+    public ResponseEntity<?> create(@RequestBody dtoPersona dtopersona) {
+        if (StringUtils.isBlank(dtopersona.getNombre())) {
             return new ResponseEntity(new Mensaje("El nombre es obligatorio"), HttpStatus.BAD_REQUEST);
         }
-        if (personaService.existsBynombre(dtoeducacion.getNombre())) {
+        if (personaService.existsByNombre(dtopersona.getNombre())) {
             return new ResponseEntity(new Mensaje("Ese nombre ya existe"), HttpStatus.BAD_REQUEST);
         }
 
-        Persona educacion = new Persona(dtoeducacion.getNombre(), dtoeducacion.getDescripcion());
-        personaService.save(educacion);
+        Persona persona = new Persona(
+                dtopersona.getNombre(), dtopersona.getDescripcion());
+        personaService.save(persona);
         return new ResponseEntity(new Mensaje("Item creado"), HttpStatus.OK);
     }
-
+    @PreAuthorize("hasRole('ADMIN')")
     @PutMapping("/update/{id}")
-    public ResponseEntity<?> update(@PathVariable("id") int id, @RequestBody dtoPersona dtoeducacion) {
+    public ResponseEntity<?> update(@PathVariable("id") int id, @RequestBody dtoPersona dtopersona) {
         if (!personaService.existsById(id)) {
             return new ResponseEntity(new Mensaje("No existe el ID"), HttpStatus.BAD_REQUEST);
         }
-        if (personaService.existsBynombre(dtopersona.getNombre()) && personaService.getByNombre(dtoeducacion.getNombre()).get().getId() != id) {
+        if (personaService.existsByNombre(dtopersona.getNombre()) && personaService.getByNombre(dtopersona.getNombre()).get().getId() != id) {
             return new ResponseEntity(new Mensaje("Ese nombre ya existe"), HttpStatus.BAD_REQUEST);
         }
-        if (StringUtils.isBlank(dtoeducacion.getNombre())) {
+        if (StringUtils.isBlank(dtopersona.getNombre())) {
             return new ResponseEntity(new Mensaje("El campo no puede estar vacío"), HttpStatus.BAD_REQUEST);
         }
 
         Persona educacion = personaService.getOne(id).get();
 
-        educacion.setNombre(dtoeducacion.getNombre());
-        educacion.setDescripcion(dtoeducacion.getDescripcion());
+        educacion.setNombre(dtopersona.getNombre());
+        educacion.setDescripcion(dtopersona.getDescripcion());
 
         personaService.save(educacion);
 
         return new ResponseEntity(new Mensaje("Ítem actualizado"), HttpStatus.OK);
     }
-}
+} 
