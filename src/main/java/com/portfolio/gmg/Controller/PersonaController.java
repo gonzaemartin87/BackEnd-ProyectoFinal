@@ -66,7 +66,7 @@ public class PersonaController {
         }
 
         Persona persona = new Persona(
-                dtopersona.getNombre(), dtopersona.getDescripcion());
+                dtopersona.getNombre(), dtopersona.getApellido(), dtopersona.getDescripcion(), dtopersona.getImg());
         personaService.save(persona);
         return new ResponseEntity(new Mensaje("Item creado"), HttpStatus.OK);
     }
@@ -83,12 +83,12 @@ public class PersonaController {
             return new ResponseEntity(new Mensaje("El campo no puede estar vacío"), HttpStatus.BAD_REQUEST);
         }
 
-        Persona educacion = personaService.getOne(id).get();
+        Persona persona = personaService.getOne(id).get();
 
-        educacion.setNombre(dtopersona.getNombre());
-        educacion.setDescripcion(dtopersona.getDescripcion());
+        persona.setNombre(dtopersona.getNombre());
+        persona.setDescripcion(dtopersona.getDescripcion());
 
-        personaService.save(educacion);
+        personaService.save(persona);
 
         return new ResponseEntity(new Mensaje("Ítem actualizado"), HttpStatus.OK);
     }

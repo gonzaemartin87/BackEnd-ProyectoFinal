@@ -36,7 +36,7 @@ public class Persona {
     
     //Constructores
 
-    public Persona(String nombre1, String descripcion1) {
+    public Persona() {
     }
 
     public Persona(String nombre, String apellido, String descripcion, String img) {
@@ -45,8 +45,8 @@ public class Persona {
         this.descripcion = descripcion;
         this.img = img;
     }
-    
-    
+
+        
     
     //Getters & Setters
 
