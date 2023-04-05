@@ -1,4 +1,4 @@
-package com.portfolio.gmg.Controller;
+    package com.portfolio.gmg.Controller;
 
 import com.portfolio.gmg.Dto.dtoEducacion;
 import com.portfolio.gmg.Entity.Educacion;
