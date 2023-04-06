@@ -14,7 +14,6 @@ com\portfolio\gmg\Repository\IPersonaRepository.class
 com\portfolio\gmg\Security\Entity\UsuarioPrincipal.class
 com\portfolio\gmg\Repository\REducacion.class
 com\portfolio\gmg\Security\Service\UsuarioService.class
-com\portfolio\gmg\Interface\IPersonaService.class
 com\portfolio\gmg\Repository\Rhys.class
 com\portfolio\gmg\Security\Controller\Mensaje.class
 com\portfolio\gmg\Security\jwt\JwtTokenFilter.class

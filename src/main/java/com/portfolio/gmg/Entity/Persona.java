@@ -28,7 +28,6 @@ public class Persona {
     private String apellido;
     
     @NotNull
-    @Size(min = 1, max = 50, message = "No cumple con los requisitos")
     private String descripcion;
     
     
