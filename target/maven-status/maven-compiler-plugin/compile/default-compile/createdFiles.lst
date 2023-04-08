@@ -31,6 +31,7 @@ com\portfolio\gmg\Security\Repository\iUsuarioRepository.class
 com\portfolio\gmg\Security\Service\UserDetailsImpl.class
 com\portfolio\gmg\Entity\hys.class
 com\portfolio\gmg\Security\Repository\iRolRepository.class
+com\portfolio\gmg\WebConfig.class
 com\portfolio\gmg\Service\SEducacion.class
 com\portfolio\gmg\Dto\dtoPersona.class
 com\portfolio\gmg\Security\Dto\NuevoUsuario.class
